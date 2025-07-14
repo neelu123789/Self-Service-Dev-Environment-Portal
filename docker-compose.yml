@@ -1,0 +1,15 @@
+version: "3"
+services:
+  app:
+    image: node:18                    # ✅ Add this
+    working_dir: /app                # ✅ Set the working directory
+    volumes:
+      - ./src:/app                   # ✅ Mounts the local app folder
+    ports:
+      - "3000:3000"                  # ✅ Maps port 3000
+    command: bash -c "npm install express && node index.js"  # ✅ Run app
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"

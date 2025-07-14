@@ -1,0 +1,18 @@
+name: Launch Dev Environment
+
+on:
+  workflow_dispatch:
+    inputs:
+      template:
+        description: 'Choose Template'
+        required: true
+        default: 'node-mongo'
+
+jobs:
+  launch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Launch Docker Template
+        run: |
+          docker-compose -f templates/${{ github.event.inputs.template }}/docker-compose.yml up -d
